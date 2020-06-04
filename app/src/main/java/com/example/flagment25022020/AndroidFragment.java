@@ -1,26 +1,50 @@
 package com.example.flagment25022020;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import java.util.Random;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AndroidFragment#newInstance} factory method to
+ * Use the  factory method to
  * create an instance of this fragment.
  */
 public class AndroidFragment extends Fragment {
 
+    View view;
+    RelativeLayout mRlayout;
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toast.makeText(getContext(), "onCreat", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_android, container, false);
+        view = inflater.inflate(R.layout.fragment_android, container, false);
+        mRlayout = view.findViewById(R.id.relativeBackgroundAndroid);
+        randomColorBackground();
+        Toast.makeText(getContext(), "onCreateView", Toast.LENGTH_SHORT).show();
+        return view;
+    }
+    private void randomColorBackground(){
+        mRlayout.setBackgroundColor(
+                Color.rgb(
+                        new Random().nextInt(255),
+                        new Random().nextInt(255),
+                        new Random().nextInt(255)
+                ));
     }
 }
